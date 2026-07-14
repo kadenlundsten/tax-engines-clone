@@ -1,0 +1,1189 @@
+{
+  "_meta": {
+    "description": "Federal OBBBA (One Big Beautiful Bill Act, P.L. 119-21) 'no tax on tips' (IRC §224) and 'no tax on overtime' (IRC §225) above-the-line deduction parameters, plus per-state conformity (does the state income tax also allow the federal deduction). Drives /tips-tax-calculator and /overtime-tax-calculator and the state-page conformity blocks. Figures are FIXED statutory amounts for tax years 2025–2028 (not inflation-indexed).",
+    "lastSourced": "2026-07-07",
+    "computationGuidance": "IRS Notice 2025-69",
+    "confidence": "high — federal figures double-researched and adversarially verified (0 of 21 refute attempts succeeded)"
+  },
+  "federal": {
+    "effectiveYears": "2025-2028",
+    "common": {
+      "aboveTheLine": true,
+      "availableToNonItemizers": true,
+      "ficaStillApplies": true,
+      "mfjRequiredIfMarried": true,
+      "mfsEligible": false,
+      "ssnRequired": true,
+      "reducesFederalIncomeTaxOnly": true,
+      "note": "These are deductions that reduce federal taxable income, not credits and not a withholding exemption. The dollar benefit ≈ the deduction amount × your marginal federal income-tax rate. Social Security (6.2%) and Medicare (1.45%) still apply to tips and overtime."
+    },
+    "overtime": {
+      "statute": "IRC §225 (added by OBBBA §70202)",
+      "cap": {
+        "single": 12500,
+        "married": 25000,
+        "head_of_household": 12500
+      },
+      "phaseoutStartMagi": {
+        "single": 150000,
+        "married": 300000,
+        "head_of_household": 150000
+      },
+      "phaseoutReductionPer1000": 100,
+      "qualifies": "Only the FLSA-required overtime PREMIUM — the extra 'half' paid above your regular rate (0.5× regular rate), NOT the full time-and-a-half. Overtime required only by state law, contract, or a collective-bargaining agreement (not by FLSA §7) does not qualify.",
+      "fullPhaseoutMagi": {
+        "single": 275000,
+        "married": 550000,
+        "head_of_household": 275000
+      },
+      "sources": [
+        {
+          "claim": "Cap $12,500 single / $25,000 joint; MAGI phase-out over $150,000/$300,000 at $100 per $1,000; only the FLSA premium qualifies; SSN + MFJ required; FICA still applies.",
+          "url": "https://www.irs.gov/newsroom/questions-and-answers-about-the-new-deduction-for-qualified-overtime-compensation"
+        },
+        {
+          "claim": "Above-the-line deduction available to itemizers and non-itemizers; effective tax years 2025–2028.",
+          "url": "https://www.irs.gov/newsroom/one-big-beautiful-bill-act-tax-deductions-for-working-americans-and-seniors"
+        },
+        {
+          "claim": "Codified at IRC §225 'Qualified overtime compensation'; only the 0.5× premium portion of FLSA-required overtime is deductible.",
+          "url": "https://www.bakertilly.com/insights/no-tax-on-overtime-deduction-under-code-225"
+        },
+        {
+          "claim": "IRS Notice 2025-69 — safe-harbor / reasonable methods to compute the 2025 deduction and phase-out.",
+          "url": "https://www.irs.gov/pub/irs-drop/n-25-69.pdf"
+        }
+      ]
+    },
+    "tips": {
+      "statute": "IRC §224 (added by OBBBA §70201)",
+      "cap": {
+        "single": 25000,
+        "married": 25000,
+        "head_of_household": 25000
+      },
+      "phaseoutStartMagi": {
+        "single": 150000,
+        "married": 300000,
+        "head_of_household": 150000
+      },
+      "phaseoutReductionPer1000": 100,
+      "qualifies": "Cash or charged tips (cash, check, card, or tokens exchangeable for cash) paid voluntarily by the customer, in an occupation that 'customarily and regularly' received tips — per the Treasury final-regs occupation list. The $25,000 cap is a single per-return limit (it is NOT doubled for joint filers). Self-employed claimants are limited to net business income and specified-service trades (SSTBs) are excluded.",
+      "fullPhaseoutMagi": {
+        "single": 400000,
+        "married": 550000,
+        "head_of_household": 400000
+      },
+      "sources": [
+        {
+          "claim": "Cap $25,000 per return (same single and joint); MAGI phase-out over $150,000/$300,000 at $100 per $1,000; above-the-line; SSN + MFJ required; FICA still applies; tax years 2025–2028.",
+          "url": "https://www.irs.gov/newsroom/one-big-beautiful-bill-act-tax-deductions-for-working-americans-and-seniors"
+        },
+        {
+          "claim": "Definition of qualified tips and the customarily-tipped requirement; self-employed limits and SSTB exclusion.",
+          "url": "https://rsmus.com/insights/services/business-tax/no-tax-on-tips-rules.html"
+        },
+        {
+          "claim": "Treasury/IRS final regulations listing the occupations that customarily and regularly receive tips.",
+          "url": "https://www.irs.gov/newsroom/treasury-irs-issue-final-regulations-listing-occupations-where-workers-customarily-and-regularly-receive-tips-under-the-one-big-beautiful-bill"
+        },
+        {
+          "claim": "Treasury detailed tipped-occupation list (published 2025-08-27).",
+          "url": "https://home.treasury.gov/system/files/136/Tipped-Occupations-Detailed-8-27-2025.pdf"
+        }
+      ]
+    },
+    "senior": {
+      "statute": "IRC §151(d)(5)(C) (added by OBBBA §70103)",
+      "amountPerPerson": 6000,
+      "phaseoutStartMagi": {
+        "single": 75000,
+        "married": 150000,
+        "head_of_household": 75000,
+        "qss": 75000,
+        "married_separate": 75000
+      },
+      "phaseoutRate": 0.06,
+      "firstYear": 2025,
+      "lastYear": 2028,
+      "fullPhaseoutMagi": {
+        "single": 175000,
+        "married": 250000,
+        "head_of_household": 175000,
+        "qss": 175000
+      },
+      "notIndexed": true,
+      "belowTheLine": true,
+      "mfsEligible": false,
+      "qualifies": "Anyone who attains age 65 on or before the last day of the tax year (TY2025 forms: born before January 2, 1961) with a work-eligible SSN on the return. $6,000 per qualified individual ($12,000 for a joint return where both spouses qualify). Married taxpayers must file jointly — MFS gets $0. Unlike tips/overtime this is a BELOW-the-line §151 deduction: it does not reduce AGI, MAGI, provisional income, or Medicare IRMAA, and it did NOT change how Social Security benefits are taxed (IRC §86 is untouched). Only 'a joint return' gets the $150,000 threshold — single, HoH, and qualifying surviving spouse all use $75,000. Not indexed for inflation.",
+      "sources": [
+        {
+          "claim": "$6,000 for each qualified individual; 65 by year-end; 6% of MAGI over $75,000 ($150,000 joint) reduces the per-person $6,000; joint return required if married; SSN required; tax years 2025–2028.",
+          "url": "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm"
+        },
+        {
+          "claim": "Per eligible individual ($12,000 total for a married couple where both spouses qualify); available to itemizers and non-itemizers; in addition to the existing extra standard deduction for 65+.",
+          "url": "https://www.irs.gov/newsroom/one-big-beautiful-bill-act-tax-deductions-for-working-americans-and-seniors"
+        },
+        {
+          "claim": "Schedule 1-A Part V mechanics: 'born before January 2, 1961'; $75,000 ($150,000 if married filing jointly); multiply excess by 6%; if married you must file jointly.",
+          "url": "https://www.irs.gov/pub/irs-pdf/f1040s1a.pdf"
+        },
+        {
+          "claim": "Fully phased out at $175,000 single / $250,000 joint (arithmetic endpoints — not stated by the IRS).",
+          "url": "https://taxfoundation.org/blog/no-tax-on-social-security-senior-tax-deduction/"
+        },
+        {
+          "claim": "Social Security benefit taxation (IRC §86) was NOT changed by P.L. 119-21; the senior deduction is applied after taxable benefits are calculated.",
+          "url": "https://www.everycrsreport.com/reports/R48613.html"
+        },
+        {
+          "claim": "Below-the-line: taken after AGI, so it does not affect the taxability of Social Security benefits; declines $60 per $1,000 over the threshold.",
+          "url": "https://tax.thomsonreuters.com/news/2025-tax-act-myths-social-security-tax-rules-unchanged-new-senior-deduction/"
+        }
+      ]
+    },
+    "salt": {
+      "statute": "IRC §164(b)(6) as amended by OBBBA §70120",
+      "itemizedOnly": true,
+      "firstYear": 2025,
+      "lastPhaseYear": 2029,
+      "revertCap": 10000,
+      "floor": 10000,
+      "mfsHalved": true,
+      "phaseDownRate": 0.3,
+      "capByYear": {
+        "2025": 40000,
+        "2026": 40400,
+        "2027": 40804,
+        "2028": 41212,
+        "2029": 41624
+      },
+      "thresholdByYear": {
+        "2025": 500000,
+        "2026": 505000,
+        "2027": 510050,
+        "2028": 515150.5,
+        "2029": 520302.01
+      },
+      "pendingGuidanceYears": [2028, 2029],
+      "standardDeductionByYear": {
+        "2025": {
+          "single": 15750,
+          "married": 31500,
+          "married_separate": 15750,
+          "head_of_household": 23625
+        },
+        "2026": {
+          "single": 16100,
+          "married": 32200,
+          "married_separate": 16100,
+          "head_of_household": 24150
+        }
+      },
+      "torpedo": {
+        "extraTaxablePerDollar": 1.3,
+        "effectiveRateAt35": 0.455,
+        "effectiveRateAt37": 0.481
+      },
+      "qualifies": "State and local income taxes (OR general sales taxes in lieu of income taxes, taxpayer's election) plus state/local real property taxes and personal property taxes (IRC §164(a), unchanged by OBBBA). Itemizers only — the cap limits Schedule A line 5e; non-itemizers get nothing from this provision. Cap: $40,000 (2025) / $40,400 (2026) / $40,804 (2027), then 101%/yr through 2029 (2028–2029 exact values pending IRS guidance; publisher consensus $41,212 / $41,624 and computed thresholds are flagged), MFS = half. Phase-down 2025–2029 only: cap reduced by 30% of MAGI over $500,000 (2025) / $505,000 (2026) / $510,050 (2027) (MFS = half), never below the $10,000 ($5,000 MFS) floor. 2030+: flat $10,000 ($5,000 MFS), no phase-down. MAGI here = AGI + §911/§931/§933 exclusions (= AGI for nearly all US-resident filers).",
+      "sources": [
+        {
+          "claim": "Statute strikes the $10,000/$5,000 cap and inserts 'the applicable limitation amount' — $40,000 for 2025, $40,400 for 2026, then 101% of the preceding year through 2029; reduced by 30% of MAGI excess over the threshold ($500,000 in 2025, $505,000 in 2026, then 101%/yr); never below $10,000; $10,000 flat after 2029.",
+          "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"
+        },
+        {
+          "claim": "Amended IRC §164(b)(6) as codified: the $40,400 / $505,000 2026 amounts, the 30% reduction, the $10,000 floor, MAGI = AGI + §911/§931/§933 exclusions, and the post-2029 $10,000 reversion.",
+          "url": "https://www.law.cornell.edu/uscode/text/26/164"
+        },
+        {
+          "claim": "Cap increased to $40,000 for 2025 and $40,400 for 2026; thresholds $500,000 / $505,000; for tax years beginning in 2030 the cap reverts to $10,000 ($5,000 MFS).",
+          "url": "https://tax.thomsonreuters.com/en/glossary/salt-deduction"
+        },
+        {
+          "claim": "Married-filing-separately halves: $20,000 / $20,200 cap, $250,000 / $252,500 threshold, and the cap cannot be reduced below $10,000 overall or $5,000 for MFS.",
+          "url": "https://www.fidelity.com/learning-center/personal-finance/SALT-deduction-increase"
+        },
+        {
+          "claim": "The reduction cannot take the cap below $10,000 ($5,000 in the case of a married taxpayer filing separately).",
+          "url": "https://www.foster.com/larry-s-tax-law/one-big-beautiful-bill-act-part-1-the-salt-deduction"
+        },
+        {
+          "claim": "SALT torpedo: within the phase-down range each extra $1 of MAGI adds $1.30 of taxable income — effective marginal rate 1.3 × 35% = 45.5% (48.1% in the 37% bracket); the cap is fully phased back to $10,000 at $600,000 MAGI (2025); OBBBA includes no restrictions on state PTET workarounds.",
+          "url": "https://www.kitces.com/blog/obbba-one-big-beautiful-bill-act-tax-planning-salt-cap-senior-deduction-qbi-deduction-tax-cut-and-jobs-act-tcja-amt-trump-accounts/"
+        },
+        {
+          "claim": "Published 2027–2029 cap projections under the 101% rule: $40,804 / $41,212 / $41,624 (2028–2029 rounding pending IRS guidance).",
+          "url": "https://nstp.org/article/salt-deduction-increase"
+        },
+        {
+          "claim": "2025 standard deduction (OBBBA-set): $15,750 single/MFS, $31,500 MFJ, $23,625 HoH.",
+          "url": "https://www.irs.gov/newsroom/one-big-beautiful-bill-provisions-individuals-and-workers"
+        },
+        {
+          "claim": "2026 standard deduction (Rev. Proc. 2025-32): $16,100 single/MFS, $32,200 MFJ, $24,150 HoH.",
+          "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+        },
+        {
+          "claim": "SALT is not deductible under the AMT — taxes from Schedule A are added back on Form 6251 line 2a, so taxpayers in AMT get less or no benefit from the higher cap.",
+          "url": "https://www.irs.gov/instructions/i6251"
+        }
+      ]
+    },
+    "carLoan": {
+      "statute": "IRC §163(h)(4) 'qualified passenger vehicle loan interest' (added by OBBBA §70203)",
+      "interestCap": 10000,
+      "phaseoutStartMagi": {
+        "single": 100000,
+        "married": 200000,
+        "head_of_household": 100000,
+        "married_separate": 100000
+      },
+      "phaseoutReductionPer1000": 200,
+      "firstYear": 2025,
+      "lastYear": 2028,
+      "fullPhaseoutMagi": {
+        "single": 150000,
+        "married": 250000,
+        "head_of_household": 150000,
+        "married_separate": 150000
+      },
+      "notIndexed": true,
+      "belowTheLine": true,
+      "availableToNonItemizers": true,
+      "reducesAgi": false,
+      "mfsEligible": true,
+      "perReturnNotPerVehicle": true,
+      "qualifies": "Interest — not principal — on a loan used to buy a qualifying vehicle, up to $10,000 per RETURN per year (not per vehicle; a joint return is capped at $10,000 total, and each married-filing-separately return gets its own $10,000). The vehicle must be NEW (original use begins with you — used cars and lease-end buyouts do not qualify), a car/minivan/van/SUV/pickup/motorcycle (not an ATV, trailer, camper, or RV) under 14,000 lbs GVWR, have its FINAL ASSEMBLY in the United States (checkable from the VIN plant code at the NHTSA decoder or the final-assembly point on the window sticker), and be for personal (not business) use. The loan must be incurred after 2024-12-31, secured by a first lien on the vehicle, not a lease, and not from a related party. The VIN must be reported on the return (Schedule 1-A, Part IV). BELOW the line but available to itemizers and non-itemizers alike — it reduces federal taxable income only, NOT AGI. Married-filing-separately is eligible (unlike the tips/overtime/senior deductions). Phase-out: min(interest, $10,000) is reduced by $200 for each $1,000 (or portion thereof) of MAGI over $100,000 ($200,000 for a joint return only), never below zero. MAGI = AGI + §911/§931/§933 exclusions (= AGI for nearly everyone). Tax years 2025–2028 only; not indexed for inflation.",
+      "eligibilityChecklist": [
+        "New vehicle — original use commences with you (used cars and lease-end buyouts do not qualify)",
+        "Final assembly in the United States (VIN plant code or the window-sticker final-assembly point)",
+        "Loan incurred after 2024-12-31, secured by a first lien on the vehicle",
+        "Personal use, not business or commercial — and not a lease"
+      ],
+      "sources": [
+        {
+          "claim": "$10,000 annual limit on qualified passenger vehicle loan interest, per return; phase-out $200 per $1,000 of MAGI over $100,000 ($200,000 joint), reduction applied after the $10,000 cap; new-vehicle original-use, US final assembly, first-lien, non-lease, non-related-party, VIN-on-return requirements; tax years 2025–2028.",
+          "url": "https://www.law.cornell.edu/uscode/text/26/163"
+        },
+        {
+          "claim": "Deduction for car loan interest 2025–2028; phases out for MAGI over $100,000 ($200,000 joint); vehicle must have final assembly in the United States and original use starting with the taxpayer; available to itemizers and non-itemizers.",
+          "url": "https://www.irs.gov/newsroom/one-big-beautiful-bill-act-tax-deductions-for-working-americans-and-seniors"
+        },
+        {
+          "claim": "Claimed on new Schedule 1-A (Part IV), flowing to Form 1040 line 13b after AGI — reduces taxable income, not AGI; VIN reported on the return.",
+          "url": "https://www.irs.gov/newsroom/schedule-1-a-additional-deductions-what-to-know-about-the-new-form"
+        },
+        {
+          "claim": "$10,000 limit applies per tax return (not per person or per vehicle); used cars and cars bought at lease-end do not qualify; leases are excluded; the deduction is not indexed to inflation.",
+          "url": "https://tax.thomsonreuters.com/news/2025-2028-vehicle-loan-interest-deduction-what-you-need-to-know/"
+        },
+        {
+          "claim": "Proposed regulations: joint return capped at $10,000; the $10,000 limit applies separately to each married-filing-separately return; final-assembly verification via the VIN (49 CFR 565) or the vehicle-information label (49 CFR 583.5).",
+          "url": "https://www.calt.iastate.edu/post/proposed-regulations-explain-new-deduction-personal-car-loan-interest"
+        },
+        {
+          "claim": "Senate narrowed the break to new vehicles ('the original use ... commences with the taxpayer'), so used vehicles do not qualify; ATVs/trailers/campers dropped from the final law.",
+          "url": "https://www.nbcwashington.com/news/business/money-report/senate-gop-tax-bill-gives-break-on-car-loan-interest-but-not-all-vehicles-qualify/3939560/"
+        }
+      ]
+    },
+    "charitable": {
+      "statute": "IRC §170(p) non-itemizer deduction (OBBBA §70424); IRC §170(b)(1)(I) 0.5%-of-contribution-base floor for itemizers (OBBBA §70425); IRC §68 itemized-deduction limitation, the '2/37 rule' (OBBBA §70111)",
+      "firstYear": 2026,
+      "permanent": true,
+      "notIndexed": true,
+      "nonItemizer": {
+        "cap": {
+          "single": 1000,
+          "married": 2000,
+          "head_of_household": 1000,
+          "married_separate": 1000,
+          "qss": 1000
+        },
+        "cashOnly": true,
+        "reducesAgi": false,
+        "belowTheLine": true,
+        "availableToNonItemizersOnly": true,
+        "noCarryforward": true,
+        "eligibleOrgs": "section 170(b)(1)(A) public charities (50%-limit orgs)",
+        "excludedOrgs": ["donor_advised_funds", "private_non_operating_foundations", "section_509(a)(3)_supporting_orgs"]
+      },
+      "itemizerFloor": {
+        "rate": 0.005,
+        "base": "contribution_base_AGI",
+        "appliesToCashAndNonCash": true,
+        "preFloorCarryoversExempt": true,
+        "floorDisallowedGenerallyNotCarriedForward": true
+      },
+      "topBracketCap": {
+        "fractionNumerator": 2,
+        "fractionDenominator": 37,
+        "reductionRate": 0.0540540540540541,
+        "effectiveBenefitRate": 0.35,
+        "topMarginalRate": 0.37,
+        "lesserOf": ["total_itemized_deductions", "taxable_income_over_37pct_threshold"],
+        "topBracketThreshold2026": {
+          "single": 640600,
+          "married": 768700,
+          "head_of_household": 640600
+        },
+        "noCarryforward": true,
+        "appliesToAllItemizedNotJustCharitable": true
+      },
+      "cashCeilingAgiPct": 0.60,
+      "qualifies": "Three OBBBA charitable changes, all effective for tax years beginning after 2025-12-31 and all PERMANENT (no 2028 sunset). (1) Non-itemizers: a §170(p) deduction of up to $1,000 (single/HoH/MFS/QSS) or $2,000 (MFJ) for CASH gifts to §170(b)(1)(A) public charities — NOT donor-advised funds, §509(a)(3) supporting orgs, or private non-operating foundations; non-cash gifts do NOT qualify; no carryforward. Claimed via §63(b)(4), i.e. subtracted AFTER AGI to reach taxable income — it lowers federal income tax but does NOT reduce AGI (so no IRMAA/ACA/SS-taxability effect), same structure as tips/overtime/car-loan. (2) Itemizers: only charitable contributions exceeding 0.5% of the contribution base (AGI) are deductible on Schedule A (§170(b)(1)(I)); the first 0.5% of AGI is lost. (3) 37%-bracket itemizers: §68 reduces TOTAL itemized deductions (all of them, not just charitable) by 2/37 of the lesser of (total itemized) or (taxable income over the 37% threshold), capping the benefit at 35 cents per dollar. The pre-existing 60%-of-AGI ceiling on cash gifts to public charities was made permanent.",
+      "sources": [
+        {
+          "claim": "IRC §170(p) as amended: $1,000/$2,000 non-itemizer deduction, cash only, §170(b)(1)(A) donees, excludes DAFs/509(a)(3)/private foundations, no carryforward; §170(b)(1)(I): only contributions exceeding 0.5% of contribution base are deductible.",
+          "url": "https://www.law.cornell.edu/uscode/text/26/170"
+        },
+        {
+          "claim": "IRC §63(b): taxable income of a non-itemizer = AGI minus the standard deduction, §199A, and the deductions provided in §170(p), §224, §225, and §163(h)(4)(A) — i.e. §170(p) is subtracted AFTER AGI and does NOT reduce AGI.",
+          "url": "https://www.law.cornell.edu/uscode/text/26/63"
+        },
+        {
+          "claim": "IRC §62(a) above-the-line list contains NO reference to §170 or §170(p) — confirming the non-itemizer charitable deduction is not an AGI-reducing adjustment.",
+          "url": "https://www.law.cornell.edu/uscode/text/26/62"
+        },
+        {
+          "claim": "IRC §68: itemized deductions reduced by 2/37 of the lesser of (itemized deductions) or (taxable income, determined without §68 and increased by itemized deductions, exceeding the 37% bracket start); effective for tax years beginning after 2025-12-31.",
+          "url": "https://www.law.cornell.edu/uscode/text/26/68"
+        },
+        {
+          "claim": "Enrolled statute of record: OBBBA §70424 (non-itemizer §170(p)), §70425 (0.5% floor §170(b)(1)(I)), §70111 (§68 limitation). Permanence and 2026 effective dates.",
+          "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"
+        },
+        {
+          "claim": "0.5% floor mechanic + worked examples ($500k AGI/$20k gift → first $2,500 disallowed); floor-disallowed amounts generally not carried forward; 35% (2/37) cap not carried forward; 60% cash ceiling made permanent.",
+          "url": "https://www.hklaw.com/en/insights/publications/2025/11/year-end-charitable-planning-big-changes-coming-for-2026"
+        },
+        {
+          "claim": "Non-itemizer deduction is CASH ONLY to public charities, excludes DAFs and private foundations, no carryforward; above-the-line 'in addition to the standard deduction' (i.e. no itemizing required).",
+          "url": "https://www.taftlaw.com/news-events/law-bulletins/charitable-giving-after-the-obbba-the-2026-outlook/"
+        },
+        {
+          "claim": "0.5% floor worked example ($175k AGI/$2,500 gift → deduct $1,625) and how the two floors work; both provisions effective 2026.",
+          "url": "https://bipartisanpolicy.org/issue-brief/how-the-new-charitable-deduction-floors-work/"
+        },
+        {
+          "claim": "2/37 = 5.4054% reduction; effective 35 cents/dollar for 37%-bracket filers; worked numeric example.",
+          "url": "https://www.gunster.com/newsroom/publications/the-new-2-37-rule-and-how-it-will-affect-your-taxes"
+        }
+      ]
+    },
+    "mip": {
+      "statute": "IRC §163(h)(3)(E) 'Mortgage insurance premiums treated as interest' — the termination clause (E)(iv) is permanently disabled by new §163(h)(3)(F)(i)(III), added by OBBBA §70108(a)(1)(D) ('Clause (iv) of subparagraph (E) shall not apply'). The deduction (E)(i)), the 10%-per-$1,000-or-fraction-thereof AGI phaseout (E)(ii), and the pre-2007-contract limitation (E)(iii) were never repealed and remain operative verbatim. 'Qualified mortgage insurance' is defined at §163(h)(4)(E) (VA, FHA, Rural Housing Service, and private MI). Prepaid/upfront premiums are governed by §163(h)(4)(F) + Treas. Reg. §1.163-11.",
+      "firstYear": 2026,
+      "permanent": true,
+      "notIndexed": true,
+      "itemizedOnly": true,
+      "agiBasis": "AGI",
+      "mfsEligible": true,
+      "phaseout": {
+        "threshold": { "single": 100000, "married": 100000, "head_of_household": 100000, "married_separate": 50000 },
+        "stepSize": { "single": 1000, "married": 1000, "head_of_household": 1000, "married_separate": 500 },
+        "reductionPerStep": 0.10,
+        "eliminatedAboveAgi": { "single": 109000, "married": 109000, "head_of_household": 109000, "married_separate": 54500 }
+      },
+      "contractIssuedAfter": "2006-12-31",
+      "prepaid": {
+        "amortizationMonthsMax": 84,
+        "exemptProviders": ["VA", "RHS"],
+        "unamortizedLostOnPayoff": true
+      },
+      "reporting": {
+        "form1098Box": 5,
+        "form1098PerMortgageThreshold": 600,
+        "scheduleALine": "8d (2021-vintage — the last year the deduction was in effect; the 2026 Schedule A is not yet final, re-verify at form release)"
+      },
+      "qualifies": "Effective for taxable years beginning after December 31, 2025 (OBBBA §70108(b)), permanent, not indexed for inflation. Premiums for monthly PMI (conventional loans), FHA annual MIP, FHA upfront UFMIP, VA funding fees, and USDA (Rural Housing Service) guarantee fees paid or accrued in connection with acquisition indebtedness on a qualified residence are treated as deductible home-mortgage interest on Schedule A — itemizers only, no non-itemizer alternative. The deductible amount is reduced (never below zero) by 10% for each $1,000 ($500 MFS) or fraction thereof that AGI exceeds $100,000 ($50,000 MFS) — fully eliminated once AGI exceeds $109,000 ($54,500 MFS); MFJ shares the single/HoH $100,000 threshold (no separate joint threshold, a marriage-penalty structure). Only mortgage insurance contracts issued after December 31, 2006 qualify. Lump-sum prepaid premiums (FHA UFMIP, single-premium/split-premium PMI) must be amortized ratably over the shorter of the loan's stated term or 84 months starting the month the insurance was obtained; the unamortized balance is lost (not deductible) if the mortgage is paid off or refinanced early. VA funding fees and USDA guarantee fees are exempt from amortization — fully deductible in the year paid, even as a lump sum. Reported via Form 1098 Box 5 (prepaid premiums included, $600-per-mortgage reporting threshold) flowing to Schedule A line 8d (2021-vintage line; the 2026 form is not yet final).",
+      "sources": [
+        {
+          "claim": "OBBBA §70108: amends §163(h)(3)(F) to strike the pre-2026 sunset and insert new subclause (III), 'Mortgage insurance premiums treated as interest.—Clause (iv) of subparagraph (E) shall not apply,' making the MIP deduction permanent and effective for taxable years beginning after December 31, 2025; (E)(ii)/(iii) untouched.",
+          "url": "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm"
+        },
+        {
+          "claim": "IRC §163(h)(3)(E): the deduction (clause (i)), the phaseout — reduced by 10% of the amount for each $1,000 ($500 MFS) or fraction thereof that AGI exceeds $100,000 ($50,000 MFS) (clause (ii)) — and the pre-2007-contract limitation (clause (iii)).",
+          "url": "https://www.law.cornell.edu/uscode/text/26/163"
+        },
+        {
+          "claim": "IRC §163(h)(4)(E): 'qualified mortgage insurance' = VA, FHA, or Rural Housing Service mortgage insurance, plus private mortgage insurance under the Homeowners Protection Act of 1998; contract must be issued after December 31, 2006.",
+          "url": "https://www.law.cornell.edu/uscode/text/26/163"
+        },
+        {
+          "claim": "IRC §163(h)(4)(F) + Treas. Reg. §1.163-11: prepaid mortgage insurance premiums are allocated ratably over the shorter of the mortgage's stated term or 84 months beginning with the month the insurance was obtained; no deduction for the unamortized balance if the mortgage is satisfied early; the rule does not apply to amounts paid for VA or Rural Housing Service mortgage insurance (fully deductible in the year paid).",
+          "url": "https://www.law.cornell.edu/cfr/text/26/1.163-11"
+        },
+        {
+          "claim": "IRS Pub 936 Mortgage Insurance Premiums Deduction Worksheet: no deduction if AGI is more than $109,000 ($54,500 if married filing separately).",
+          "url": "https://www.irs.gov/pub/irs-pdf/p936.pdf"
+        },
+        {
+          "claim": "IRS Instructions for Form 1098 (Rev. December 2026): Box 5 'Mortgage Insurance Premiums' — enter total premiums of $600 or more paid for the tax year, including prepaid premiums, for qualified mortgage insurance.",
+          "url": "https://www.irs.gov/instructions/i1098"
+        },
+        {
+          "claim": "2026 standard deduction (Rev. Proc. 2025-32): $16,100 single/MFS, $32,200 MFJ, $24,150 HoH — the itemize-vs-standard gate this deduction depends on (no benefit to non-itemizers).",
+          "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+        }
+      ]
+    },
+    "qcd": {
+      "statute": "IRC §408(d)(8) 'Distributions for charitable purposes' (qualified charitable distributions). Annual limit inflation-indexed under §408(d)(8)(A) flush language + §1(f)(3) since 2024. NOT an OBBBA provision; permanent.",
+      "permanent": true,
+      "indexed": true,
+      "annualLimitBaseYear2023": 100000,
+      "annualLimitByYear": { "2024": 105000, "2025": 108000, "2026": 111000 },
+      "splitInterestOneTimeByYear": { "2024": 53000, "2025": 54000, "2026": 55000 },
+      "ageEligible": 70.5,
+      "rmdAge2023plus": 73,
+      "perPersonNotPerReturn": true,
+      "excludedFromGrossIncome": true,
+      "reducesAgi": true,
+      "noSeparateDeduction": true,
+      "notSubjectToWithholding": true,
+      "withholdingCite": "deemed elected out under §3405(a)(2)",
+      "eligibleAccounts": ["traditional_ira", "roth_ira_rarely_useful", "inactive_sep_ira", "inactive_simple_ira"],
+      "ineligibleAccounts": ["401k", "403b", "457", "ongoing_sep_ira", "ongoing_simple_ira"],
+      "eligibleOrgs": "section 170(b)(1)(A) public charities",
+      "excludedOrgs": ["donor_advised_funds", "private_non_operating_foundations", "section_509(a)(3)_supporting_orgs"],
+      "directTrusteeToCharityRequired": true,
+      "entireGiftMustBe100pctDeductible": true,
+      "taxablePortionFirst": true,
+      "post70HalfDeductibleContributionOffset": true,
+      "ageStandardDeductionAddition": {
+        "_source": "IRC §63(f) pre-existing additional standard deduction for age 65+ (distinct from the OBBBA §151(d)(5)(C) $6,000 senior bonus modeled separately in federal.senior — the two are NOT the same and must not be double-counted). 2026 figures per Rev. Proc. 2025-32, cross-verified against Kiplinger 'The Extra Standard Deduction for 65 and Older', nationaltaxtools.com, and ourtaxpartner.com (all converge on $2,050 / $1,650): increased from $2,000 (2025) to $2,050 (2026) single/HoH/MFS/QSS, and from $1,600 (2025) to $1,650 (2026) per qualifying spouse for a joint return.",
+        "byYear": {
+          "2025": { "single": 2000, "head_of_household": 2000, "married_separate": 2000, "qss": 2000, "marriedPerSpouse": 1600 },
+          "2026": { "single": 2050, "head_of_household": 2050, "married_separate": 2050, "qss": 2050, "marriedPerSpouse": 1650 }
+        }
+      },
+      "qualifies": "A QCD lets an IRA owner age 70½+ send up to $111,000 (2026; indexed, per person) directly from the IRA trustee to a §170(b)(1)(A) public charity. The amount is EXCLUDED from gross income (§408(d)(8)(A) 'shall not be includible in gross income') — it never enters AGI, and no separate charitable deduction is allowed (no double-dip). It counts toward that year's RMD (RMD age is 73 under SECURE 2.0, so QCDs are available ~2.5 years before RMDs begin). Must go DIRECTLY from the trustee to the charity — NOT a donor-advised fund, private foundation, or §509(a)(3) supporting organization — and the entire gift must otherwise be 100% deductible under §170 (no return benefit). From an IRA only (not a 401(k); not an ongoing SEP/SIMPLE). Not subject to federal withholding (deemed elected out under §3405(a)(2)). The excludable amount is reduced by post-70½ deducted IRA contributions.",
+      "sources": [
+        { "claim": "2026 annual QCD limit $108,000 → $111,000; one-time split-interest $54,000 → $55,000.", "url": "https://www.irs.gov/pub/irs-drop/n-25-67.pdf" },
+        { "claim": "§408(d)(8): 'shall not be includible in gross income'; age 70½ 'attained'; direct-by-trustee to §170(b)(1)(A) org OTHER THAN a §509(a)(3) supporting org or §4966(d)(2) DAF; entire distribution must be allowable as a §170 deduction; $100,000/$50,000 base amounts indexed after 2023.", "url": "https://www.law.cornell.edu/uscode/text/26/408" },
+        { "claim": "Pub 590-B QCD mechanics: 'at least age 70½ when the distribution is made'; 'made directly by the trustee of your IRA (other than an ongoing SEP or SIMPLE IRA)'; 'A QCD will count towards your required minimum distribution'; maximum annual exclusion $108,000 (2025) / $111,000 (subsequent-year worksheet); taxable-portion-first; post-70½ deductible-contribution offset; RMD 'Age 73 for tax years 2023 and later'.", "url": "https://www.irs.gov/pub/irs-pdf/p590b.pdf" },
+        { "claim": "A QCD is not subject to federal withholding — deemed to have elected out under §3405(a)(2); normal IRA distributions default to 10% (waivable via Form W-4R).", "url": "https://www.northerntrust.com/united-states/institute/articles/withholding-from-ira-qualified-plan-distributions" },
+        { "claim": "2026 additional standard deduction for age 65+: $2,050 single/HoH (up from $2,000); $1,650 per qualifying spouse MFJ (up from $1,600), per Rev. Proc. 2025-32.", "url": "https://www.kiplinger.com/taxes/extra-standard-deduction-age-65-and-older" }
+      ]
+    }
+  },
+  "states": {
+    "_note": "Per-state conformity filled from the state re-verification pass. conformity values: 'no_wage_income_tax' | 'decouples' (federal deduction does NOT reduce state tax) | 'conforms' (does reduce state tax) | 'partial'/year- or deduction-dependent (see per-field). Each carries tips/overtime × 2025 / 2026plus where they differ, plus a source.",
+    "north-dakota": {
+      "name": "North Dakota",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "note": "North Dakota is a rolling-conformity state that starts from federal taxable income, so it automatically incorporates the federal overtime and tips deductions for tax years 2025–2028. No decoupling legislation has been enacted.",
+      "source": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
+    },
+    "district-of-columbia": {
+      "name": "District of Columbia",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "District of Columbia has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.kiplinger.com/taxes/emergency-tax-bill-ends-key-tax-breaks-in-d-c"
+    },
+    "new-mexico": {
+      "name": "New Mexico",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "New Mexico has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.nmlegis.gov/handouts/ZFFSS%20073125%20Item%203%20OBBBA%20Tax%20Presentation.pdf"
+    },
+    "vermont": {
+      "name": "Vermont",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Vermont has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.vermont.gov/individuals/personal-income-tax/taxable-income"
+    },
+    "west-virginia": {
+      "name": "West Virginia",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "West Virginia has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://taxfoundation.org/oped/west-virginia-income-tax-cut-no-taxes-tips-overtime/"
+    },
+    "montana": {
+      "name": "Montana",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "note": "Montana conforms; its 2025 forms allow the tips and overtime deductions.",
+      "source": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2-Instructions/2025_Montana_Individual_Income_Tax_Return_Form_2_Instructions.pdf"
+    },
+    "delaware": {
+      "name": "Delaware",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Delaware has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.thomsonreuters.com/blog/implementing-obbba-tax-law-changes/"
+    },
+    "new-york": {
+      "name": "New York",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "yes"
+      },
+      "note": "New York adopted its own 'no tax on tips' break in the FY2027 budget (signed May 28, 2026): up to $25,000 of tipped income is excluded from New York State income tax for tax years beginning in and after 2026, mirroring the federal rule. Overtime was NOT included — the federal overtime deduction reduces your federal tax only, and 2025 tips got no state relief.",
+      "source": "https://www.budget.ny.gov/pubs/press/2026/fy27-enacted-signed.html"
+    },
+    "virginia": {
+      "name": "Virginia",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Virginia has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://taxnews.ey.com/news/2025-1326-virginia-updates-income-tax-withholding-formula-and-tables-legislation-could-prevent-conformity-with-federal-tax-exemption-for-overtime-pay-and-tips"
+    },
+    "texas": {
+      "name": "Texas",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "Texas has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "florida": {
+      "name": "Florida",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "Florida has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "washington": {
+      "name": "Washington",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "Washington has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "nevada": {
+      "name": "Nevada",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "Nevada has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "tennessee": {
+      "name": "Tennessee",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "Tennessee has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "south-dakota": {
+      "name": "South Dakota",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "South Dakota has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "wyoming": {
+      "name": "Wyoming",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "Wyoming has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "alaska": {
+      "name": "Alaska",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "Alaska has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    },
+    "new-hampshire": {
+      "name": "New Hampshire",
+      "hasWageTax": false,
+      "overtime": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "tips": {
+        "y2025": "n/a",
+        "y2026": "n/a"
+      },
+      "note": "New Hampshire has no state income tax on wages, so there is no state return to deduct on — your federal saving is the whole story.",
+      "source": "https://www.revenue.nh.gov/news-and-media/repeal-nh-interest-and-dividends-tax-now-effect"
+    },
+    "pennsylvania": {
+      "name": "Pennsylvania",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Pennsylvania has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.pa.gov/content/dam/copapwp-pagov/en/budget/documents/for-commonwealth-agencies-and-employees/for-agencies/payroll/payroll-memo-25-07-obbba-no-tax-on-overtime.pdf"
+    },
+    "illinois": {
+      "name": "Illinois",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Illinois has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
+    },
+    "north-carolina": {
+      "name": "North Carolina",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "North Carolina has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.ncdor.gov/taxes-forms/information-tax-professionals/tax-bulletins-directives-and-other-important-notices/important-notices-and-frequently-asked-questions-personal-taxes/questions-and-answers-about-impact-federal-law-nc-individual-and-corporate-income-tax-returns"
+    },
+    "utah": {
+      "name": "Utah",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Utah does not allow these federal deductions to reduce your Utah state tax.",
+      "source": "https://tax.utah.gov/general/new-info"
+    },
+    "michigan": {
+      "name": "Michigan",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "yes"
+      },
+      "note": "Michigan starts from federal AGI, so there is no automatic flow-through. A state subtraction applies for 2026–2028 but NOT for 2025.",
+      "source": "https://www.michigan.gov/treasury/reference/taxpayer-notices/notice-regarding-new-deductions-for-qualified-overtime-compensation-and-qualified-tips"
+    },
+    "arizona": {
+      "name": "Arizona",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "note": "Arizona adopted full OBBBA conformity in HB 4168, signed June 13, 2026 as part of the FY2026 budget deal. It creates a mandatory individual income-tax subtraction for qualified overtime and tips under A.R.S. §43-1022, retroactive to tax year 2025 and applying to 2026 and forward. (Earlier standalone conformity bills were vetoed in early 2026; the budget resolved it.)",
+      "source": "https://www.currentfederaltaxdevelopments.com/blog/2026/6/14/arizona-hb-4168-title-43-income-tax-overhaul-aligned-with-the-one-big-beautiful-bill-act-obbba"
+    },
+    "colorado": {
+      "name": "Colorado",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "yes",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "note": "Colorado allows the tips deduction both years. The overtime deduction flows through for 2025 but is added back from 2026 (HB25-1296), which is under a pending legal challenge.",
+      "source": "https://leg.colorado.gov/bills/hb25-1296"
+    },
+    "indiana": {
+      "name": "Indiana",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "yes"
+      },
+      "note": "Indiana decouples for 2025. SEA 243 couples for 2026 ONLY and currently sunsets after 2026 — 2027–2028 are not yet conformed.",
+      "source": "https://rsmus.com/insights/tax-alerts/2026/indiana-federal-tax-conformity-bay-latest-tax-bill.html"
+    },
+    "kentucky": {
+      "name": "Kentucky",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Kentucky has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://deandorton.com/kentuckys-2026-legislative-session-brings-income-and-sales-tax-changes/"
+    },
+    "mississippi": {
+      "name": "Mississippi",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Mississippi has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.thomsonreuters.com/blog/implementing-obbba-tax-law-changes/"
+    },
+    "georgia": {
+      "name": "Georgia",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "partial"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "partial"
+      },
+      "note": "Georgia decouples from the full federal deductions. For tax years 2026 through 2028 it offers a smaller capped state exclusion instead (HB 463, signed May 11, 2026: up to $1,750 of qualified overtime and $1,750 of cash tips), not the full federal amount.",
+      "source": "https://gov.georgia.gov/press-releases/2026-05-11/gov-kemp-signs-legislation-lowering-taxes-and-supporting-economic-growth"
+    },
+    "louisiana": {
+      "name": "Louisiana",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Louisiana has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://revenue.louisiana.gov/individuals/general-resources/individual-income-tax/"
+    },
+    "iowa": {
+      "name": "Iowa",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "note": "Iowa conforms (federal-taxable-income base); the deductions flow through to the state return.",
+      "source": "https://revenue.iowa.gov/taxes/tax-guidance/withholding-tax/impact-one-big-beautiful-bill-act-employee-withholding"
+    },
+    "idaho": {
+      "name": "Idaho",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "note": "Idaho starts from federal taxable income and conformed via HB559 (2026), retroactive to 2025 — the deductions flow through.",
+      "source": "https://rsmus.com/insights/tax-alerts/2026/idaho-conforms-one-big-beautiful-bill.html"
+    },
+    "massachusetts": {
+      "name": "Massachusetts",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Massachusetts has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://arbcpa.com/state-conformity-to-obbba-tax-provisions-what-businesses-and-taxpayers-in-maine-massachusetts-and-new-hampshire-need-to-know/"
+    },
+    "new-jersey": {
+      "name": "New Jersey",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "New Jersey has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
+    },
+    "ohio": {
+      "name": "Ohio",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Ohio has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf"
+    },
+    "maryland": {
+      "name": "Maryland",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Maryland has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/alerts/tax-alert-maryland-impacts-of-the-one-big-beautiful-bill-act.pdf"
+    },
+    "minnesota": {
+      "name": "Minnesota",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Minnesota has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.revenue.state.mn.us/2025-federal-nonconformity-income-tax"
+    },
+    "wisconsin": {
+      "name": "Wisconsin",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Wisconsin has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://wisconsinexaminer.com/2026/04/03/evers-vetoes-gop-bills-for-no-tax-on-overtime-and-tips-requiring-counties-to-cooperate-with-ice/"
+    },
+    "connecticut": {
+      "name": "Connecticut",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Connecticut has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
+    },
+    "oregon": {
+      "name": "Oregon",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "tips": {
+        "y2025": "yes",
+        "y2026": "yes"
+      },
+      "note": "Oregon conforms (rolling conformity); the deductions flow through to the state return.",
+      "source": "https://www.taxformfinder.org/oregon/form-or-40-instructions"
+    },
+    "california": {
+      "name": "California",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "California has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.grantthornton.com/insights/alerts/tax/2025/salt/a-e/ca-conformity-date-update-excludes-obbba-10-21"
+    },
+    "missouri": {
+      "name": "Missouri",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Missouri has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://extension.missouri.edu/news/new-tax-break-on-overtime-pay-comes-with-limits"
+    },
+    "kansas": {
+      "name": "Kansas",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Kansas has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://admin.ks.gov/media/cms/No_Tax_on_Overtime_Employee_Flyer_2025_W2s_b22cab92ada95.pdf"
+    },
+    "nebraska": {
+      "name": "Nebraska",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Nebraska has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.wowt.com/2025/09/02/report-big-beautiful-bill-could-cost-nebraska-4065-million-tax-revenue/"
+    },
+    "oklahoma": {
+      "name": "Oklahoma",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Oklahoma has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf"
+    },
+    "arkansas": {
+      "name": "Arkansas",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Arkansas has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
+    },
+    "alabama": {
+      "name": "Alabama",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "partial"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Alabama does not conform to the full federal overtime deduction, but HB 527 (signed April 16, 2026) allows a smaller capped state deduction of up to $1,000 of qualified overtime compensation for tax years 2026–2028. Tips got no state relief — the federal tips deduction reduces your federal tax only. (Alabama's own earlier full overtime exemption ended June 30, 2025.)",
+      "source": "https://governor.alabama.gov/newsroom/2026/04/governor-ivey-signs-bill-to-provide-tax-relief-to-hardworking-alabamians/"
+    },
+    "south-carolina": {
+      "name": "South Carolina",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "South Carolina's IRC conformity date (December 31, 2024) pre-dates the federal OBBBA, and the 2026 conformity bill (H3368) was not enacted, so the tips (§224) and overtime (§225) deductions must be added back on the South Carolina return — they reduce your federal tax only.",
+      "source": "https://dor.sc.gov/income-tax-south-carolina-internal-revenue-code-conformity-update"
+    },
+    "maine": {
+      "name": "Maine",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Maine has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/ta_october2025_vol35_iss14_0.pdf"
+    },
+    "hawaii": {
+      "name": "Hawaii",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Hawaii has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://www.tfhawaii.org/wordpress/blog/no-tax-on-tips/"
+    },
+    "rhode-island": {
+      "name": "Rhode Island",
+      "hasWageTax": true,
+      "overtime": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "tips": {
+        "y2025": "no",
+        "y2026": "no"
+      },
+      "note": "Rhode Island has not adopted the federal tips/overtime deductions for state income tax as of mid-2026, so they reduce your federal tax only.",
+      "source": "https://tax.thomsonreuters.com/news/rhode-island-decouples-from-federal-tax-changes-employers-must-keep-withholding-on-tips-and-overtime/"
+    }
+  }
+}

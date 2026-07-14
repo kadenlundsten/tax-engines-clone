@@ -1,0 +1,25 @@
+{
+  "name": "us-tax-engines",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Tested, sourced US tax/paycheck calculation engines (TY2025/2026) extracted from tools-berry.com",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node test/test-engine.js && node test/test-tax-data.js && node test/test-employment-tax.js && node test/test-obbba.js && node test/test-charitable.js && node test/test-mip.js && node test/test-dependent-care.js && node test/test-w4-overtime-tips.js && node test/test-roth-catchup.js && node test/test-bonus-tax.js && node test/test-1099-threshold.js && node test/test-w2-decoder.js && node test/test-ss-maxout.js && node test/test-student-loan-cap.js && node test/test-able-account.js && node test/test-section-127.js && node test/test-qcd.js && node test/test-adoption-credit.js"
+  },
+  "dependencies": {},
+  "keywords": [
+    "tax",
+    "payroll",
+    "paycheck",
+    "irs",
+    "obbba",
+    "fica",
+    "withholding",
+    "calculator"
+  ]
+}
