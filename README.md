@@ -108,8 +108,11 @@ This extraction deliberately excludes everything that isn't calculation logic:
 
 Each provision below was built against a written spec that cross-checked an
 initial draft/assumption against the primary source and documented what
-changed. These are pulled directly from this repo's own build history — every
-row cites the spec file the correction lives in.
+changed. The `docs/…-spec.md` file each row cites is an internal build note,
+not part of this extraction — it is listed only as provenance for where the
+correction was recorded. What actually ships is the corrected figure itself,
+encoded in the `data/*.json` files and asserted by the test suite (the one
+`engines/w2-box-engine.js` citation is an in-repo engine header comment).
 
 | Provision | Initial assumption | Corrected to | Source |
 |---|---|---|---|
