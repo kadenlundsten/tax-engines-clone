@@ -90,6 +90,25 @@ The remaining 9 engines (`employment-tax.js`, `form-1099-checker.js`,
 | `dependent-care-2026.json` | `dependent-care.js` |
 | `ttoc-occupations.json` | `w2-box-engine.js` — the 71-occupation Treasury Tipped Occupation Code table |
 
+## Data
+
+Two of the reference tables above are also published as flat, ready-to-lift files:
+
+- **`data/ttoc-occupations-2026.csv`** — the full 71-row Treasury Tipped Occupation
+  Code table (code, occupation, category, description, illustrative examples, SOC
+  code, and whether the row was added by the final rule). It is generated from
+  `data/ttoc-occupations.json` — not hand-typed — so the two never drift, and the
+  three final-rule additions (509 Visual Artists, 510 Floral Designers, 810 Gas
+  Pump Attendant) are flagged in the last column.
+
+The **canonical, always-current** version of this table lives on the site and is
+the source you should cite:
+**<https://tools-berry.com/data/treasury-tipped-occupation-codes/>**. That page is
+searchable and sortable, offers the same data as CSV and JSON, gives every row a
+stable `#code-<code>` deep-link anchor (e.g. `#code-101`), and is refreshed
+whenever 26 CFR §1.224-1 changes. The CSV in this repo is a point-in-time
+snapshot for offline/programmatic use; when in doubt, defer to the live page.
+
 ## What's not here
 
 This extraction deliberately excludes everything that isn't calculation logic:
