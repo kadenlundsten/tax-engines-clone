@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tax Engines — Paycheck demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#111}
+      body{margin:20px;max-width:1000px}
+      h1,h2,h3{margin:8px 0}
+      label{display:block;margin:8px 0}
+      input,select,button{font-size:14px;padding:6px}
+      .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+      .card{background:#fff;border:1px solid #e6e6e6;padding:12px;border-radius:6px;margin-top:12px}
+      pre{background:#f6f8fa;padding:12px;overflow:auto}
+      .bands{display:flex;gap:6px;align-items:flex-end;margin-top:8px}
+      .band{background:#1f6feb;color:#fff;padding:6px;border-radius:4px;font-size:12px;display:flex;align-items:center;justify-content:center}
+      .muted{color:#6b7280}
+      .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+    </style>
+  </head>
+  <body>
+    <h1>Tax Engines — Paycheck demo</h1>
+    <p class="muted">A small static demo that imports the repo's ESM engine and JSON data. No bundler required.</p>
+
+    <div class="card">
+      <div class="controls">
+        <label>
+          Wage type
+          <select id="wageType"><option value="salary">Salary</option><option value="hourly">Hourly</option></select>
+        </label>
+
+        <label>
+          Amount
+          <input id="amount" type="number" value="60000" />
+        </label>
+
+        <label id="hoursLabel" style="display:none">
+          Hours / week
+          <input id="hours" type="number" value="40" />
+        </label>
+
+        <label>
+          Pay frequency
+          <select id="freq">
+            <option value="monthly">monthly</option>
+            <option value="semimonthly">semimonthly</option>
+            <option value="biweekly">biweekly</option>
+            <option value="weekly">weekly</option>
+            <option value="annual">annual</option>
+          </select>
+        </label>
+
+        <label>
+          State
+          <select id="state"><option value="">Loading...</option></select>
+        </label>
+
+        <label>
+          Filing status
+          <select id="filing">
+            <option value="single">single</option>
+            <option value="married">married</option>
+            <option value="headOfHousehold">headOfHousehold</option>
+          </select>
+        </label>
+      </div>
+
+      <div style="margin-top:8px" class="row">
+        <button id="run">Compute</button>
+        <button id="example">Load Example</button>
+        <div class="muted" style="margin-left:auto">Periods shown per selected frequency</div>
+      </div>
+
+      <div id="output" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card">
+      <h3>Raw output</h3>
+      <pre id="raw">waiting…</pre>
+    </div>
+
+    <script type="module">
+      // This demo imports engines from the repo. Place this file in web/ at the repo root.
+      // It expects ../engines/paycheck-engine.js and ../data/tax-data-2026.json to exist.
+      import { computePaycheck, federalBracketBreakdown } from '../engines/paycheck-engine.js';
+
+      async function loadTaxData() {
+        const r = await fetch('../data/tax-data-2026.json');
+        if (!r.ok) throw new Error('Failed to fetch tax-data: ' + r.status);
+        return await r.json();
+      }
+
+      function readInputs() {
+        const wageType = document.getElementById('wageType').value;
+        const amount = Number(document.getElementById('amount').value) || 0;
+        const hours = Number(document.getElementById('hours').value) || 40;
+        const freq = document.getElementById('freq').value;
+        const state = document.getElementById('state').value;
+        const filing = document.getElementById('filing').value;
+        const wage = wageType === 'hourly' ? { type: 'hourly', amount, hoursPerWeek: hours } : { type: 'salary', amount };
+        return { wage, payFrequency: freq, stateSlug: state, filingStatus: filing };
+      }
+
+      function renderResult(res, taxData) {
+        const out = document.getElementById('output');
+        out.innerHTML = `
+          <div class="row"><strong>Annual net:</strong> $${res.annual.net.toFixed(2)}</div>
+          <div class="row"><strong>Annual total tax:</strong> $${res.annual.totalTax.toFixed(2)}</div>
+          <div class="row"><strong>Per-paycheck net:</strong> $${res.perPaycheck.net.toFixed(2)}</div>
+        `;
+
+        // federal bracket breakdown
+        try {
+          const br = federalBracketBreakdown(res.annual.gross, res.filingStatus, taxData.federal, 0);
+          const bandsEl = document.createElement('div');
+          bandsEl.className = 'bands';
+          const max = Math.max(...br.bands.map(b => b.amount || 0), 1);
+          for (const b of br.bands) {
+            const el = document.createElement('div');
+            el.className = 'band';
+            const h = Math.max(28, Math.round((b.amount / max) * 140));
+            el.style.height = h + 'px';
+            el.title = `${(b.rate*100).toFixed(1)}% — $${b.amount.toFixed(0)}`;
+            el.textContent = `${(b.rate*100).toFixed(0)}%`;
+            bandsEl.appendChild(el);
+          }
+          out.appendChild(bandsEl);
+        } catch (e) {
+          /* ignore */
+        }
+
+        document.getElementById('raw').textContent = JSON.stringify(res, null, 2);
+      }
+
+      // init
+      const taxDataPromise = loadTaxData().then(taxData => {
+        // populate states
+        const states = Object.keys(taxData.states || {}).sort();
+        const sel = document.getElementById('state');
+        sel.innerHTML = '<option value="">(none)</option>' + states.map(s => `<option value="${s}">${s}</option>`).join('');
+        // if README/packaged list uses different keys, update here
+        return taxData;
+      }).catch(err => {
+        document.getElementById('raw').textContent = 'Error loading tax data: ' + err;
+        throw err;
+      });
+
+      document.getElementById('run').addEventListener('click', async () => {
+        const taxData = await taxDataPromise;
+        const inputs = readInputs();
+        const res = computePaycheck(inputs, taxData);
+        renderResult(res, taxData);
+      });
+
+      document.getElementById('example').addEventListener('click', () => {
+        document.getElementById('wageType').value = 'salary';
+        document.getElementById('amount').value = 90000;
+        document.getElementById('freq').value = 'biweekly';
+        document.getElementById('filing').value = 'single';
+        // choose a state if present
+        const stateSelect = document.getElementById('state');
+        if (stateSelect.options.length > 1) stateSelect.selectedIndex = 1;
+      });
+
+      document.getElementById('wageType').addEventListener('change', e => {
+        document.getElementById('hoursLabel').style.display = e.target.value === 'hourly' ? 'block' : 'none';
+      });
+
+    </script>
+  </body>
+</html>
