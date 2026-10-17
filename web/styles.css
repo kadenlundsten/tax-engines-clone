@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tax Engines — Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div id="app" class="app">
+      <aside class="sidebar">
+        <h2>Tax Engines</h2>
+        <nav>
+          <button data-view="home" class="nav-btn active">Dashboard</button>
+          <button data-view="paycheck" class="nav-btn">Paycheck</button>
+          <button data-view="bonus" class="nav-btn">Bonus</button>
+        </nav>
+        <div class="sidebar-foot">Demo • static ESM</div>
+      </aside>
+
+      <main class="main">
+        <header class="main-header">
+          <h1 id="view-title">Dashboard</h1>
+          <div class="main-actions">
+            <button id="run-sample" class="btn">Run sample</button>
+            <button id="open-raw" class="btn ghost">Open raw JSON</button>
+          </div>
+        </header>
+
+        <section id="view-home" class="view">
+          <div class="grid">
+            <div class="card">
+              <h3>Welcome</h3>
+              <p>This multi-page demo runs the repository's tax engines in your browser. Use the sidebar to pick a tool.</p>
+              <ul>
+                <li>Paycheck — compute federal/state/FICA and per-paycheck take-home.</li>
+                <li>Bonus — compare withholding now vs true tax owed at filing.</li>
+              </ul>
+            </div>
+
+            <div class="card" id="summary-card">
+              <h3>Quick examples</h3>
+              <p>Try the sample to prefill inputs and compute both Paycheck and Bonus examples.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-paycheck" class="view hidden">
+          <div class="card form-card">
+            <h3>Paycheck calculator</h3>
+            <div class="form-grid">
+              <label>Wage type
+                <select id="pc-wageType"><option value="salary">Salary</option><option value="hourly">Hourly</option></select>
+              </label>
+              <label>Amount <input id="pc-amount" type="number" value="60000"></label>
+              <label id="pc-hoursLabel" style="display:none">Hours/week <input id="pc-hours" type="number" value="40"></label>
+              <label>Frequency
+                <select id="pc-freq"><option value="monthly">monthly</option><option value="semimonthly">semimonthly</option><option value="biweekly">biweekly</option><option value="weekly">weekly</option></select>
+              </label>
+              <label>State <select id="pc-state"><option>Loading…</option></select></label>
+              <label>Filing status
+                <select id="pc-filing"><option value="single">single</option><option value="married">married</option><option value="headOfHousehold">headOfHousehold</option></select>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button id="pc-run" class="btn">Compute Paycheck</button>
+              <button id="pc-example" class="btn ghost">Load Example</button>
+            </div>
+          </div>
+
+          <div id="pc-output" class="card output-card">No result yet</div>
+        </section>
+
+        <section id="view-bonus" class="view hidden">
+          <div class="card form-card">
+            <h3>Bonus calculator</h3>
+            <div class="form-grid">
+              <label>Bonus amount <input id="bn-bonus" type="number" value="5000"></label>
+              <label>Regular annual income <input id="bn-reg" type="number" value="60000"></label>
+              <label>Filing status
+                <select id="bn-filing"><option value="single">single</option><option value="married">married</option><option value="headOfHousehold">headOfHousehold</option></select>
+              </label>
+              <label>Method
+                <select id="bn-method"><option value="flat">flat (22%)</option><option value="aggregate">aggregate</option></select>
+              </label>
+              <label>State <select id="bn-state"><option>Loading…</option></select></label>
+            </div>
+            <div class="form-actions">
+              <button id="bn-run" class="btn">Compute Bonus</button>
+              <button id="bn-example" class="btn ghost">Load Example</button>
+            </div>
+          </div>
+
+          <div id="bn-output" class="card output-card">No result yet</div>
+        </section>
+
+      </main>
+    </div>
+
+    <dialog id="raw-dialog"><pre id="raw-content"></pre><button id="raw-close" class="btn">Close</button></dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
