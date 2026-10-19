@@ -4,24 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Tax & Finance Calculators</title>
-  <meta name="description" content="Tax and finance calculators for 2026: overtime, tips, paycheck, deductions, loans, retirement, and state tax comparisons.">
+  <title>Payroll Calculators & Tax Tools</title>
+  <meta name="description" content="Payroll calculators, paycheck tools, bonus withholding, overtime and tips tax calculators, and state wage tax pages.">
   <style>
     :root {
-      --bg: #f7f9fc;
+      --bg: #f4f7fb;
       --panel: #ffffff;
-      --panel-alt: #eef3ff;
+      --panel-alt: #edf4ff;
       --text: #172033;
-      --muted: #55627d;
-      --border: #dfe8f4;
+      --muted: #58657d;
+      --border: #dfe9f4;
       --accent: #1d4ed8;
       --accent-strong: #1639a3;
-      --shadow: rgba(23,32,51,0.08);
+      --shadow: rgba(17, 24, 39, 0.08);
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, "Segoe UI", sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
@@ -38,7 +39,7 @@
       box-shadow: 0 1px 2px var(--shadow);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
     }
     .brand-row {
       display: flex;
@@ -48,8 +49,8 @@
       gap: 1rem;
     }
     .brand {
-      font-weight: 800;
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      font-weight: 700;
       color: var(--text);
     }
     nav {
@@ -59,14 +60,14 @@
       font-weight: 600;
     }
     main {
-      padding: 2rem 0 4rem;
+      padding: 2rem 0 3rem;
     }
     .hero {
-      background: linear-gradient(135deg, #eff6ff, #f8fafc 40%, #eefbf5);
+      background: linear-gradient(135deg, #eff7ff, #f8fbff 35%, #edfdf6);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: clamp(1.25rem, 2vw, 2rem);
-      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+      padding: clamp(1.2rem, 2vw, 2rem);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
       margin-bottom: 2rem;
     }
     .eyebrow {
@@ -74,12 +75,12 @@
       background: #dbeafe;
       color: #1f3f8a;
       border-radius: 999px;
-      padding: 0.35rem 0.7rem;
-      font-size: 0.75rem;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.76rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.8rem;
     }
     h1 {
       margin: 0 0 0.75rem;
@@ -87,8 +88,8 @@
       line-height: 1.1;
     }
     .lede {
-      max-width: 760px;
       margin: 0;
+      max-width: 800px;
       color: var(--muted);
       font-size: 1.05rem;
     }
@@ -99,11 +100,12 @@
       margin-top: 1rem;
     }
     .badge {
+      display: inline-block;
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 0.45rem 0.8rem;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: var(--muted);
     }
@@ -113,11 +115,11 @@
       border-radius: 18px;
       padding: 1.25rem;
       margin-bottom: 1.5rem;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.03);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.025);
     }
     .section h2 {
       margin: 0 0 1rem;
-      font-size: clamp(1.3rem,2vw,1.9rem);
+      font-size: clamp(1.3rem, 2vw, 1.9rem);
     }
     .tool-grid {
       display: grid;
@@ -126,16 +128,16 @@
     }
     .tool-card {
       display: block;
-      background: linear-gradient(180deg, #fff, #f9fbff);
+      background: linear-gradient(180deg, #fff, #f8fbff);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 1rem;
-      min-height: 156px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      min-height: 150px;
+      transition: transform .15s ease, box-shadow .15s ease;
     }
     .tool-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 22px rgba(22,57,163,0.08);
+      box-shadow: 0 12px 22px rgba(22, 57, 163, 0.08);
       text-decoration: none;
     }
     .tool-card .ic {
@@ -145,9 +147,9 @@
     }
     .tool-card .t-name {
       display: block;
-      font-weight: 800;
       color: var(--text);
-      margin-bottom: 0.5rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
     }
     .tool-card .t-desc {
       display: block;
@@ -158,17 +160,21 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 0.7rem;
-      margin-top: 1rem;
     }
     .state-grid a {
       display: block;
-      color: var(--text);
       background: var(--panel-alt);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 0.8rem 0.9rem;
       text-align: center;
+      padding: 0.8rem 0.9rem;
       font-weight: 600;
+      color: var(--text);
+    }
+    .mini-note {
+      color: var(--muted);
+      margin-top: 1rem;
+      font-size: 0.96rem;
     }
     footer {
       background: #fff;
@@ -190,10 +196,11 @@
 <body>
   <header class="site">
     <div class="wrap brand-row">
-      <div class="brand">Tax & Finance Calculators</div>
+      <div class="brand">Payroll Calculators</div>
       <nav aria-label="Primary navigation">
-        <a href="#money">Tax & Finance</a>
         <a href="#paycheck">Paycheck</a>
+        <a href="#extra-pay">Extra Pay</a>
+        <a href="#rules">Tax Rules</a>
       </nav>
     </div>
   </header>
@@ -202,54 +209,17 @@
     <div class="wrap">
       <section class="hero">
         <div class="eyebrow">2026</div>
-        <h1>Tax and finance tools, without the unrelated calculators.</h1>
-        <p class="lede">This page focuses on tax, payroll, deductions, and money-planning calculators. The password gate has been removed and non-tax tools have been filtered out.</p>
+        <h1>Payroll calculators and paycheck tax tools.</h1>
+        <p class="lede">Focused on wages, overtime, tips, state take-home pay, bonus withholding, and the payroll tax rules that affect real paychecks.</p>
         <div class="badge-row">
-          <span class="badge">No password required</span>
-          <span class="badge">Tax-focused</span>
-          <span class="badge">Finance-focused</span>
-        </div>
-      </section>
-
-      <section class="section" id="money">
-        <h2>Tax & Finance</h2>
-        <div class="tool-grid">
-          <a class="tool-card" href="/overtime-tax-calculator/"><span class="ic" aria-hidden="true">⏱️</span><span class="t-name">No Tax on Overtime</span><span class="t-desc">Estimate how much overtime is tax-free under current federal rules.</span></a>
-          <a class="tool-card" href="/tips-tax-calculator/"><span class="ic" aria-hidden="true">🧾</span><span class="t-name">No Tax on Tips</span><span class="t-desc">See the deduction, savings, and how federal taxes are affected.</span></a>
-          <a class="tool-card" href="/senior-deduction-calculator/"><span class="ic" aria-hidden="true">🎂</span><span class="t-name">Senior Bonus Deduction</span><span class="t-desc">Check senior deduction eligibility and estimated tax savings.</span></a>
-          <a class="tool-card" href="/salt-cap-calculator/"><span class="ic" aria-hidden="true">🏠</span><span class="t-name">SALT Cap Calculator</span><span class="t-desc">Estimate your deductible SALT and the real tax savings.</span></a>
-          <a class="tool-card" href="/car-loan-interest-calculator/"><span class="ic" aria-hidden="true">🚗</span><span class="t-name">Car Loan Interest Deduction</span><span class="t-desc">Analyze whether new-car loan interest qualifies for a deduction.</span></a>
-          <a class="tool-card" href="/charitable-deduction-calculator/"><span class="ic" aria-hidden="true">❤️</span><span class="t-name">Charitable Deduction</span><span class="t-desc">Estimate the charitable deduction and federal tax impact.</span></a>
-          <a class="tool-card" href="/pmi-deduction-calculator/"><span class="ic" aria-hidden="true">🏡</span><span class="t-name">PMI / Mortgage Insurance Deduction</span><span class="t-desc">Review the AGI limit and estimated mortgage insurance deduction.</span></a>
-          <a class="tool-card" href="/qcd-vs-charitable-deduction-calculator/"><span class="ic" aria-hidden="true">🎗️</span><span class="t-name">QCD vs. Charitable Deduction</span><span class="t-desc">Compare giving strategies for IRA owners age 70½+.</span></a>
-          <a class="tool-card" href="/dependent-care-fsa-vs-credit-calculator/"><span class="ic" aria-hidden="true">🧸</span><span class="t-name">Dependent Care FSA vs. Credit</span><span class="t-desc">Compare FSA contributions versus child care credit savings.</span></a>
-          <a class="tool-card" href="/student-loan-cap-calculator/"><span class="ic" aria-hidden="true">🎓</span><span class="t-name">Federal Student Loan Cap</span><span class="t-desc">See federal borrowing caps and how they affect funding gaps.</span></a>
-          <a class="tool-card" href="/able-account-calculator/"><span class="ic" aria-hidden="true">♿</span><span class="t-name">ABLE Account Contribution Limit</span><span class="t-desc">Estimate annual ABLE contribution limits and eligibility.</span></a>
-          <a class="tool-card" href="/1099-threshold-checker/"><span class="ic" aria-hidden="true">🧾</span><span class="t-name">1099 Threshold Checker</span><span class="t-desc">Determine whether a 1099-K, 1099-NEC, or 1099-MISC applies.</span></a>
-          <a class="tool-card" href="/w2-box-decoder/"><span class="ic" aria-hidden="true">🔍</span><span class="t-name">W-2 Box 12 Decoder</span><span class="t-desc">Decode tax codes and review tipped-occupation references.</span></a>
-          <a class="tool-card" href="/employer-student-loan-repayment-calculator/"><span class="ic" aria-hidden="true">💵</span><span class="t-name">Employer Student Loan Benefit</span><span class="t-desc">Estimate tax-free employer student loan repayment benefits.</span></a>
-          <a class="tool-card" href="/adoption-credit-calculator/"><span class="ic" aria-hidden="true">🧸</span><span class="t-name">Adoption Tax Credit</span><span class="t-desc">Review adoption credit eligibility and refundability.</span></a>
-          <a class="tool-card" href="/bonus-tax-calculator/"><span class="ic" aria-hidden="true">💸</span><span class="t-name">Bonus Tax Calculator</span><span class="t-desc">Estimate withholding, refund, and effective tax on bonuses.</span></a>
-          <a class="tool-card" href="/w4-overtime-tips-withholding-calculator/"><span class="ic" aria-hidden="true">📋</span><span class="t-name">W-4 Overtime & Tips Withholding</span><span class="t-desc">Model extra withholding for overtime and tips.</span></a>
-          <a class="tool-card" href="/ss-wage-base-calculator/"><span class="ic" aria-hidden="true">🛑</span><span class="t-name">Social Security Wage Base Max-Out</span><span class="t-desc">See when Social Security tax stops for the year.</span></a>
-          <a class="tool-card" href="/roth-catchup-calculator/"><span class="ic" aria-hidden="true">🏦</span><span class="t-name">Mandatory Roth Catch-Up</span><span class="t-desc">Check whether Roth catch-up rules apply to your income.</span></a>
-          <a class="tool-card" href="/1099-vs-w2-calculator/"><span class="ic" aria-hidden="true">💼</span><span class="t-name">1099 vs W-2</span><span class="t-desc">Compare contractor and employee take-home pay.</span></a>
-          <a class="tool-card" href="/mortgage-calculator/"><span class="ic" aria-hidden="true">🏠</span><span class="t-name">Mortgage Calculator</span><span class="t-desc">Estimate monthly payment, total cost, and interest over time.</span></a>
-          <a class="tool-card" href="/auto-loan-calculator/"><span class="ic" aria-hidden="true">🚗</span><span class="t-name">Auto Loan Calculator</span><span class="t-desc">Work out payments, financing, and total interest.</span></a>
-          <a class="tool-card" href="/debt-payoff-calculator/"><span class="ic" aria-hidden="true">💳</span><span class="t-name">Debt Payoff Calculator</span><span class="t-desc">Model payoff timelines and payment requirements.</span></a>
-          <a class="tool-card" href="/401k-calculator/"><span class="ic" aria-hidden="true">🏦</span><span class="t-name">401(k) Retirement Calculator</span><span class="t-desc">Project balances and retirement savings growth.</span></a>
-          <a class="tool-card" href="/compound-interest-calculator/"><span class="ic" aria-hidden="true">💹</span><span class="t-name">Compound Interest Calculator</span><span class="t-desc">See how savings and investments grow over time.</span></a>
-          <a class="tool-card" href="/cagr-calculator/"><span class="ic" aria-hidden="true">📊</span><span class="t-name">CAGR Calculator</span><span class="t-desc">Measure annualized investment growth across time.</span></a>
-          <a class="tool-card" href="/savings-goal-calculator/"><span class="ic" aria-hidden="true">🎯</span><span class="t-name">Savings Goal Calculator</span><span class="t-desc">Plan monthly savings to hit a target by a deadline.</span></a>
-          <a class="tool-card" href="/inflation-calculator/"><span class="ic" aria-hidden="true">📈</span><span class="t-name">US Inflation Calculator</span><span class="t-desc">Compare dollar value across years using inflation data.</span></a>
-          <a class="tool-card" href="/sales-tax-calculator/"><span class="ic" aria-hidden="true">🧮</span><span class="t-name">Sales Tax Calculator</span><span class="t-desc">Add or remove sales tax from a purchase price.</span></a>
-          <a class="tool-card" href="/gas-cost-calculator/"><span class="ic" aria-hidden="true">⛽</span><span class="t-name">Gas Cost Calculator</span><span class="t-desc">Estimate trip cost based on distance, mileage, and gas price.</span></a>
-          <a class="tool-card" href="/fuel-economy-calculator/"><span class="ic" aria-hidden="true">🚙</span><span class="t-name">Fuel Economy Calculator</span><span class="t-desc">Convert MPG, liters per 100 km, and fuel consumption metrics.</span></a>
+          <span class="badge">No password</span>
+          <span class="badge">No ads</span>
+          <span class="badge">Payroll-focused</span>
         </div>
       </section>
 
       <section class="section" id="paycheck">
-        <h2>2026 Paycheck Calculators by State</h2>
+        <h2>Paycheck calculators by state</h2>
         <div class="state-grid">
           <a href="/alabama-paycheck-calculator/">Alabama</a>
           <a href="/alaska-paycheck-calculator/">Alaska</a>
@@ -304,12 +274,35 @@
           <a href="/wyoming-paycheck-calculator/">Wyoming</a>
         </div>
       </section>
+
+      <section class="section" id="extra-pay">
+        <h2>Extra pay & paycheck adjustments</h2>
+        <div class="tool-grid">
+          <a class="tool-card" href="/overtime-tax-calculator/"><span class="ic" aria-hidden="true">⏱️</span><span class="t-name">No Tax on Overtime</span><span class="t-desc">See how overtime affects federal tax and take-home pay.</span></a>
+          <a class="tool-card" href="/tips-tax-calculator/"><span class="ic" aria-hidden="true">🧾</span><span class="t-name">No Tax on Tips</span><span class="t-desc">Estimate tips deductions and your savings.</span></a>
+          <a class="tool-card" href="/bonus-tax-calculator/"><span class="ic" aria-hidden="true">💸</span><span class="t-name">Bonus Tax Calculator</span><span class="t-desc">Check bonus withholding, refund, and effective tax impact.</span></a>
+          <a class="tool-card" href="/w4-overtime-tips-withholding-calculator/"><span class="ic" aria-hidden="true">📋</span><span class="t-name">W-4 Overtime &amp; Tips Withholding</span><span class="t-desc">Estimate the right withholding for extra pay.</span></a>
+          <a class="tool-card" href="/ss-wage-base-calculator/"><span class="ic" aria-hidden="true">🛑</span><span class="t-name">Social Security Wage Base Max-Out</span><span class="t-desc">Find when Social Security tax stops for the year.</span></a>
+          <a class="tool-card" href="/1099-vs-w2-calculator/"><span class="ic" aria-hidden="true">💼</span><span class="t-name">1099 vs W-2</span><span class="t-desc">Compare contractor vs employee take-home pay.</span></a>
+        </div>
+      </section>
+
+      <section class="section" id="rules">
+        <h2>Payroll tax rules & forms</h2>
+        <div class="tool-grid">
+          <a class="tool-card" href="/1099-threshold-checker/"><span class="ic" aria-hidden="true">🧾</span><span class="t-name">1099 Threshold Checker</span><span class="t-desc">Check whether a 1099-K, 1099-NEC, or 1099-MISC applies.</span></a>
+          <a class="tool-card" href="/w2-box-decoder/"><span class="ic" aria-hidden="true">🔍</span><span class="t-name">W-2 Box 12 Decoder</span><span class="t-desc">Decode tax codes and tipped-occupation data.</span></a>
+          <a class="tool-card" href="/roth-catchup-calculator/"><span class="ic" aria-hidden="true">🏦</span><span class="t-name">Mandatory Roth Catch-Up</span><span class="t-desc">See whether higher earners need Roth catch-up contributions.</span></a>
+          <a class="tool-card" href="/salary-to-hourly/"><span class="ic" aria-hidden="true">⏱️</span><span class="t-name">Salary to Hourly</span><span class="t-desc">Convert annual pay to hourly and back.</span></a>
+        </div>
+        <p class="mini-note">This home page is intentionally limited to payroll, paycheck, wage, bonus, overtime, and related tax tools.</p>
+      </section>
     </div>
   </main>
 
   <footer>
     <div class="wrap">
-      <span>Tax & Finance Calculators — tax estimates only, not legal or financial advice.</span>
+      <span>Payroll Calculators — tax estimates only, not legal or financial advice.</span>
     </div>
   </footer>
 </body>
