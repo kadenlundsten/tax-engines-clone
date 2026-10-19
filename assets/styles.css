@@ -1,0 +1,46 @@
+/* Minimal stylesheet to restore layout for tax-engines-clone (Tools Berry clone)
+   Saved as assets/styles.css
+*/
+:root{
+  --wrap: 1024px;
+  --accent:#0b63ff;
+  --muted:#666;
+  --bg:#fff;
+  --surface:#f8f8f9;
+  --radius:8px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;line-height:1.4;color:#111;background:var(--bg)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:20px}
+header.site{background:var(--surface);border-bottom:1px solid #e6e6e9}
+header .wrap{display:flex;align-items:center;gap:16px}
+.brand{font-weight:700;color:var(--accent);text-decoration:none;font-size:1.2rem}
+nav[aria-label]{margin-left:auto}
+nav a{color:var(--muted);text-decoration:none;margin-left:12px}
+.hero{padding:28px 0}
+.hero h1{margin:0 0 8px;font-size:1.8rem}
+.lede{margin:0;color:var(--muted)}
+.badges{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.badge{background:#fff;border:1px solid #e0e0e3;padding:6px 8px;border-radius:999px;font-size:0.85rem;color:var(--muted)}
+.cat{margin-top:18px;border-top:1px solid #eee;padding-top:18px}
+.cat-summary h2{margin:0;font-size:1.1rem}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}
+.tool-card{display:block;padding:12px;background:#fff;border:1px solid #efeef0;border-radius:10px;text-decoration:none;color:inherit}
+.tool-card .t-name{display:block;font-weight:600}
+.tool-card .t-desc{display:block;color:var(--muted);font-size:0.95rem;margin-top:6px}
+.ad-slot{background:#fff;border:1px dashed #ddd;padding:12px;border-radius:8px;color:var(--muted);text-align:center}
+footer.site{border-top:1px solid #eee;padding:16px 0;margin-top:24px;font-size:0.9rem;color:var(--muted)}
+.state-grid{display:flex;flex-wrap:wrap;gap:8px}
+.state-grid a{background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #f0f0f0;text-decoration:none;color:var(--muted);font-size:0.95rem}
+/* Password modal */
+.tb-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:9999}
+.tb-modal{background:#fff;padding:20px;border-radius:12px;max-width:420px;width:92%;box-shadow:0 10px 30px rgba(0,0,0,0.15)}
+.tb-modal h3{margin:0 0 10px}
+.tb-modal p{margin:0 0 12px;color:var(--muted)}
+.tb-modal input[type=password]{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:12px}
+.tb-modal .actions{display:flex;gap:8px;justify-content:flex-end}
+.tb-btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+.tb-btn--secondary{background:#eef3ff;color:var(--accent)}
+/* small screens */
+@media (max-width:640px){.tool-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}.hero h1{font-size:1.4rem}}
