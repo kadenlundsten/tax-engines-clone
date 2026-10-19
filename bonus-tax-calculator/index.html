@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bonus Tax Calculator</title>
+  <style>body{font-family:Arial,Helvetica,sans-serif;max-width:760px;margin:2rem auto;padding:0 1rem;line-height:1.5;background:#f7f9fc;color:#172033} .card{background:#fff;border:1px solid #dfe9f4;border-radius:16px;padding:1.25rem;box-shadow:0 10px 24px rgba(15,23,42,.04)} input,select{padding:.65rem .7rem;border:1px solid #d0d9ea;border-radius:10px;font-size:1rem;width:100%} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.result{margin-top:1.25rem;padding:1rem;border-radius:12px;background:#eef5ff;border:1px solid #cfe0ff}.small{color:#58657d;font-size:.95rem} .muted{color:#58657d}</style>
+</head>
+<body>
+  <h1>Bonus Tax Calculator</h1>
+  <p class="muted">Estimate federal and state tax withholding on a bonus payment.</p>
+  <div class="card">
+    <div class="grid">
+      <label>Bonus amount
+        <input id="bonus" type="number" value="10000" min="0" step="100">
+      </label>
+      <label>State
+        <select id="state">
+          <option value="FL">Florida</option><option value="TX">Texas</option><option value="CA">California</option><option value="NY">New York</option><option value="PA">Pennsylvania</option><option value="WA">Washington</option><option value="MA">Massachusetts</option><option value="GA">Georgia</option><option value="IL">Illinois</option><option value="NC">North Carolina</option><option value="OH">Ohio</option>
+        </select>
+      </label>
+    </div>
+    <div style="margin-top:1rem"><button id="calc" type="button">Calculate</button> <a href="/" style="margin-left:.5rem">Back home</a></div>
+    <div id="result" class="result"></div>
+  </div>
+  <script>
+    const stateRates = { FL:0, TX:0, WA:0, CA:0.093, NY:0.052, PA:0.0307, MA:0.05, GA:0.053, IL:0.0495, NC:0.0525, OH:0.028 };
+    function progressiveTax(taxable, brackets){
+      let total=0; let prev=0;
+      for (const [limit, rate] of brackets){
+        if (taxable <= prev) break;
+        const slice = Math.min(taxable, limit) - prev;
+        total += slice * rate;
+        prev = limit;
+      }
+      return total;
+    }
+    document.getElementById('calc').addEventListener('click', function(){
+      const bonus = Number(document.getElementById('bonus').value) || 0;
+      const state = document.getElementById('state').value;
+      const fed = progressiveTax(bonus, [[11000,0.10],[44725,0.12],[95375,0.22],[182100,0.24],[231250,0.32],[578125,0.35],[Infinity,0.37]]);
+      const stateTax = bonus * (stateRates[state] || 0);
+      const totalTax = fed + stateTax;
+      const takeHome = bonus - totalTax;
+      const fmt = (n)=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n);
+      document.getElementById('result').innerHTML = `
+        <strong>Estimated take-home bonus:</strong> ${fmt(takeHome)}<br>
+        <span class="small">Federal withholding: ${fmt(fed)} • State withholding: ${fmt(stateTax)} • Total withholding: ${fmt(totalTax)}</span>
+      `;
+    });
+    document.getElementById('calc').click();
+  </script>
+</body>
+</html>

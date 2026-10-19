@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overtime Tax Calculator</title>
+  <style>body{font-family:Arial,Helvetica,sans-serif;max-width:760px;margin:2rem auto;padding:0 1rem;line-height:1.5;background:#f7f9fc;color:#172033} .card{background:#fff;border:1px solid #dfe9f4;border-radius:16px;padding:1.25rem;box-shadow:0 10px 24px rgba(15,23,42,.04)} input{padding:.65rem .7rem;border:1px solid #d0d9ea;border-radius:10px;font-size:1rem;width:100%}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.result{margin-top:1.25rem;padding:1rem;border-radius:12px;background:#eef5ff;border:1px solid #cfe0ff}.small{color:#58657d;font-size:.95rem}</style>
+</head>
+<body>
+  <h1>Overtime Tax Calculator</h1>
+  <p class="muted">Estimate the extra tax impact from overtime earnings.</p>
+  <div class="card">
+    <div class="grid">
+      <label>Regular annual pay
+        <input id="regular" type="number" value="65000" min="0" step="1000">
+      </label>
+      <label>Overtime pay
+        <input id="overtime" type="number" value="12000" min="0" step="250">
+      </label>
+    </div>
+    <div style="margin-top:1rem"><button id="calc" type="button">Calculate</button> <a href="/" style="margin-left:.5rem">Back home</a></div>
+    <div id="result" class="result"></div>
+  </div>
+  <script>
+    function federalTaxForSingle(annualIncome){
+      const brackets = [[11000,0.10],[44725,0.12],[95375,0.22],[182100,0.24],[231250,0.32],[578125,0.35],[Infinity,0.37]];
+      let tax=0; let prev=0;
+      const taxable = Math.max(0, annualIncome - 15000);
+      for (const [limit, rate] of brackets){
+        if (taxable <= prev) break;
+        const slice = Math.min(taxable, limit) - prev;
+        tax += slice * rate;
+        prev = limit;
+      }
+      return tax;
+    }
+    document.getElementById('calc').addEventListener('click', function(){
+      const regular = Number(document.getElementById('regular').value) || 0;
+      const overtime = Number(document.getElementById('overtime').value) || 0;
+      const taxBefore = federalTaxForSingle(regular);
+      const taxAfter = federalTaxForSingle(regular + overtime);
+      const extraTax = Math.max(0, taxAfter - taxBefore);
+      const extraTakeHome = overtime - extraTax;
+      const fmt = (n)=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n);
+      document.getElementById('result').innerHTML = `
+        <strong>Estimated take-home from overtime:</strong> ${fmt(extraTakeHome)}<br>
+        <span class="small">Extra federal tax: ${fmt(extraTax)}</span>
+      `;
+    });
+    document.getElementById('calc').click();
+  </script>
+</body>
+</html>
