@@ -36,6 +36,9 @@
     th{background:#f8fbff}
     .compact{font-size:.85rem;color:var(--muted)}
     .template-box{margin-top:1rem;padding:1rem;border:1px dashed var(--border);border-radius:12px;background:#f8fbff}
+    .template-box h3{margin:0 0 .5rem;font-size:1rem}
+    .template-preview{overflow:auto;margin-top:.75rem}
+    .template-preview table{margin-top:0}
     pre{white-space:pre-wrap;overflow:auto;background:#fff;border:1px solid var(--border);padding:1rem;border-radius:10px;margin:0}
     @media (max-width:700px){.brand-row{flex-direction:column;align-items:flex-start}.nav{width:100%}}
   </style>
@@ -73,8 +76,10 @@
         <div id="message" class="message" aria-live="polite">Upload a CSV file to begin.</div>
 
         <div class="template-box">
+          <h3>Sample spreadsheet layout</h3>
           <div class="compact">Required CSV columns (case-insensitive and flexible names):</div>
-          <pre>employee_name, wage_type, annual_salary, hourly_rate, hours_per_week, state, filing_status, pay_frequency, 401k, hsa_fsa, post_tax_deductions, dependents, extra_withholding, bonus</pre>
+          <div id="templatePreview" class="template-preview"></div>
+          <div class="compact" style="margin-top:.8rem;">Tip: Excel users can type these headers into the first row and add one employee per row below it.</div>
         </div>
       </section>
 
