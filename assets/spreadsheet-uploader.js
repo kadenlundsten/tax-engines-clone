@@ -264,6 +264,7 @@
 
   function setMessage(msg, type) {
     const el = document.getElementById('message');
+    if (!el) return;
     el.textContent = msg;
     el.className = 'message';
     if (type) el.classList.add(type);
@@ -292,36 +293,69 @@
     reader.readAsText(file);
   }
 
-  function downloadTemplate() {
-    const template = [
-      'employee_name,wage_type,annual_salary,hourly_rate,hours_per_week,state,filing_status,pay_frequency,401k,hsa_fsa,post_tax_deductions,dependents,extra_withholding,bonus',
-      'Alex Smith,salary,95000,,40,CA,single,biweekly,7000,2500,0,0,0,0',
-      'Jamie Lee,hourly,,45,40,TX,married_joint,semimonthly,5000,2000,150,1,0,500'
-    ].join('\n');
-
-    const blob = new Blob([template], { type: 'text/csv;charset=utf-8;' });
+  function downloadCsvFile(filename, content) {
+    const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    const blob = new Blob([bom, content], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'payroll-template.csv';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      link.remove();
+    }, 0);
   }
 
-  document.getElementById('processBtn').addEventListener('click', function() {
-    const fileInput = document.getElementById('csvFile');
-    const file = fileInput.files && fileInput.files[0];
-    processFile(file);
-  });
+  function downloadTemplate() {
+    const templateRows = [
+      [
+        'employee_name', 'wage_type', 'annual_salary', 'hourly_rate', 'hours_per_week',
+        'state', 'filing_status', 'pay_frequency', '401k', 'hsa_fsa',
+        'post_tax_deductions', 'dependents', 'extra_withholding', 'bonus'
+      ],
+      [
+        'Alex Smith', 'salary', '95000', '', '40', 'CA', 'single', 'biweekly',
+        '7000', '2500', '0', '0', '0', '0'
+      ],
+      [
+        'Jamie Lee', 'hourly', '', '45', '40', 'TX', 'married_joint', 'semimonthly',
+        '5000', '2000', '150', '1', '0', '500'
+      ]
+    ];
 
-  document.getElementById('csvFile').addEventListener('change', function(e) {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      setMessage('File selected: ' + file.name + '. Click “Calculate payroll rows” to process it.', 'success');
+    const template = templateRows
+      .map((row) => row.map((cell) => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+
+    downloadCsvFile('payroll-template.csv', template);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const processBtn = document.getElementById('processBtn');
+    const csvFileInput = document.getElementById('csvFile');
+    const downloadTemplateBtn = document.getElementById('downloadTemplateBtn');
+
+    if (processBtn) {
+      processBtn.addEventListener('click', function() {
+        const file = csvFileInput && csvFileInput.files && csvFileInput.files[0];
+        processFile(file);
+      });
+    }
+
+    if (csvFileInput) {
+      csvFileInput.addEventListener('change', function(e) {
+        const file = e.target.files && e.target.files[0];
+        if (file) {
+          setMessage('File selected: ' + file.name + '. Click “Calculate payroll rows” to process it.', 'success');
+        }
+      });
+    }
+
+    if (downloadTemplateBtn) {
+      downloadTemplateBtn.addEventListener('click', downloadTemplate);
     }
   });
-
-  document.getElementById('downloadTemplateBtn').addEventListener('click', downloadTemplate);
 })();
