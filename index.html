@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payroll Calculators</title>
+  <style>
+    :root{--bg:#f4f7fb;--panel:#fff;--text:#172033;--muted:#58657d;--border:#dfe9f4;--accent:#1d4ed8;--shadow:rgba(17,24,39,.08)}
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5} a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline} .wrap{max-width:1100px;margin:0 auto;padding:0 1rem} header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 4px 16px rgba(15,23,42,.03)} .brand-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0} .brand{font-size:1.25rem;font-weight:700} nav{display:flex;flex-wrap:wrap;gap:1rem} main{padding:2rem 0 4rem} .hero{padding:1.5rem 0 0} .hero h1{margin:0 0 1rem;font-size:clamp(2rem,4vw,3rem);line-height:1.1} .lede{margin:0;color:var(--muted);font-size:1.05rem;max-width:60ch} .section{margin-top:1.5rem} .tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem} .tool-card{display:flex;flex-direction:column;gap:.5rem;padding:1.1rem;border:1px solid var(--border);border-radius:16px;background:#fff;box-shadow:var(--shadow);min-height:180px} .tool-card:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(17,24,39,.07)} .ic{font-size:1.75rem} .t-name{font-weight:700;font-size:1.08rem} .t-desc{color:var(--muted);font-size:.96rem} footer{border-top:1px solid var(--border);padding:1rem 0;background:#fff} @media (max-width:700px){.brand-row{flex-direction:column;align-items:flex-start}.tool-card{min-height:unset}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap brand-row">
+      <div class="brand">Payroll Calculators</div>
+      <nav aria-label="Primary navigation">
+        <a href="./paycheck-calculator/">Paycheck</a>
+        <a href="./bonus-tax-calculator/">Bonus Tax</a>
+        <a href="./tips-tax-calculator/">Tips</a>
+        <a href="./overtime-tax-calculator/">Overtime</a>
+        <a href="./spreadsheet-uploader/">Upload CSV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <h1>Payroll calculators and paycheck tax tools.</h1>
+      </section>
+
+      <section class="section">
+        <div class="tool-grid">
+          <a class="tool-card" href="./paycheck-calculator/"><span class="ic" aria-hidden="true">💵</span><span class="t-name">Paycheck Calculator</span><span class="t-desc">Estimate take-home pay</span></a>
+          <a class="tool-card" href="./bonus-tax-calculator/"><span class="ic" aria-hidden="true">💸</span><span class="t-name">Bonus Tax Calculator</span><span class="t-desc">Estimate bonus withholding</span></a>
+          <a class="tool-card" href="./tips-tax-calculator/"><span class="ic" aria-hidden="true">🧾</span><span class="t-name">Tips Tax Calculator</span><span class="t-desc">Estimate tip tax savings</span></a>
+          <a class="tool-card" href="./overtime-tax-calculator/"><span class="ic" aria-hidden="true">⏱️</span><span class="t-name">Overtime Tax Calculator</span><span class="t-desc">Estimate overtime tax impact</span></a>
+          <a class="tool-card" href="./spreadsheet-uploader/"><span class="ic" aria-hidden="true">📄</span><span class="t-name">Spreadsheet Uploader</span><span class="t-desc">Upload payroll CSV</span></a>
+          <a class="tool-card" href="./w4-overtime-tips-withholding-calculator/"><span class="ic" aria-hidden="true">📋</span><span class="t-name">W-4 Withholding</span><span class="t-desc">Adjust extra withholding</span></a>
+          <a class="tool-card" href="./1099-vs-w2-calculator/"><span class="ic" aria-hidden="true">💼</span><span class="t-name">1099 vs W-2</span><span class="t-desc">Compare contractor vs employee pay</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

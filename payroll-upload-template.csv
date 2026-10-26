@@ -1,0 +1,3 @@
+employee_name,wage_type,annual_salary,hourly_rate,hours_per_week,state,filing_status,pay_frequency,401k,hsa_fsa,post_tax_deductions,dependents,extra_withholding,bonus
+"Alex Smith",salary,95000,,40,CA,single,biweekly,7000,2500,0,0,0,0
+"Jamie Lee",hourly,,45,40,TX,married_joint,semimonthly,5000,2000,150,1,0,500
